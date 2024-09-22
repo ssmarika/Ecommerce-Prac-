@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-const dbUserName = "smarikashrestha02";
-const dbPassword = encodeURIComponent("smarika123");
-const dbHost = "cluster0.yv6arsk.mongodb.net";
-const dbName = "ecommerce-prac";
-const dbOptions = "retryWrites=true&w=majority&appName=Cluster0";
+const dbUserName = process.env.DB_USERNAME;
+const dbPassword = encodeURIComponent(process.env.DB_PASSWORD);
+const dbHost = process.env.DB_HOST;
+const dbName = process.env.DB_NAME;
+const dbOptions = process.env.DB_OPTIONS;
 
 const connectDB = async () => {
   try {
