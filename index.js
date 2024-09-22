@@ -10,7 +10,8 @@ app.use(express.json());
 //TODO: enable CORS
 
 //connect database
-//await connectDB();
+
+await connectDB();
 
 //register routes
 
