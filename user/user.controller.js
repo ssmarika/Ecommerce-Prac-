@@ -2,12 +2,14 @@ import express from "express";
 import Yup from "yup";
 import User from "./user.model.js";
 import bcrypt from "bcrypt";
-import { userValidationSchema } from "./user.validation.js";
-imp;
+import {
+  loginUserValidationSchema,
+  userValidationSchema,
+} from "./user.validation.js";
 
 const router = express.Router();
 
-// register user
+// !register user
 router.post(
   "/user/register",
   async (req, res, next) => {
@@ -19,9 +21,7 @@ router.post(
 
     try {
       // validate data
-      const validateData = await userValidationSchemalidationSchema.validate(
-        data
-      );
+      const validateData = await userValidationSchema.validate(data);
       req.body = validateData;
     } catch (error) {
       //if validation fails, throw error
@@ -57,6 +57,25 @@ router.post(
 
     //send res
     return res.status(201).send("User registered successfully");
+  }
+);
+
+// !LOGIN
+router.post(
+  "/user/login",
+  async (req, res, next) => {
+    //validate user
+    const data = req.body;
+    try {
+      const validateData = await loginUserValidationSchema.validate(data);
+      req.body = validateData;
+    } catch (error) {
+      return res.status(404).send({ message: error.message });
+    }
+    next();
+  },
+  (req, res) => {
+    return res.status(200).send("Login");
   }
 );
 
