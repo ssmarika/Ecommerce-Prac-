@@ -39,6 +39,12 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+//hide the password when converting the bson data to json
+userSchema.methods.toJSON = function () {
+  let obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
 // create table/collection/model
 const User = mongoose.model("User", userSchema);
 
