@@ -6,7 +6,7 @@ import {
   loginUserValidationSchema,
   userValidationSchema,
 } from "./user.validation.js";
-import validateReqBody from "../middleware/authentication.middleware.js";
+import validateReqBody from "../middleware/validate.req.body.js";
 import jwt from "jsonwebtoken";
 
 const router = express.Router();
@@ -74,16 +74,14 @@ router.post(
     }
     //generate access token
     const payload = { email: user.email };
-    const secretKey = "SECRETKEY";
+    const secretKey = process.env.ACCESS_TOKEN_SECRET_KEY;
     const token = jwt.sign(payload, secretKey);
 
-    return res
-      .status(200)
-      .send({
-        message: "Successful login",
-        userDetail: user,
-        accessToken: token,
-      });
+    return res.status(200).send({
+      message: "Successful login",
+      userDetail: user,
+      accessToken: token,
+    });
   }
 );
 

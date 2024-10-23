@@ -1,0 +1,18 @@
+export const productCategories = [
+  "grocery",
+  "bakery",
+  "liquor",
+  "clothing",
+  "kitchen",
+  "stationery",
+  "electronic",
+  "electrical",
+  "mechanical",
+  "medicines",
+  "sports",
+  "gym",
+  "shoes",
+  "cosmetics",
+  "fruits",
+  "vegetables",
+];
